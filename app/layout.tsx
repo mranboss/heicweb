@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/JsonLd';
 import { CookieBanner } from '@/components/CookieBanner';
+import { SimpleNavigation } from '@/components/SimpleNavigation';
 
 export const metadata: Metadata = getPageMetadata(
   'HEIC in JPG umwandeln – Kostenlos, schnell, sicher (ohne Upload)',
@@ -48,7 +49,10 @@ export default function RootLayout({
         <JsonLd json={organizationJsonLd} />
         <JsonLd json={websiteJsonLd} />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
         
         {/* Google Consent Mode v2 - Initialize BEFORE any Google tags */}
         <script dangerouslySetInnerHTML={{
@@ -80,23 +84,7 @@ export default function RootLayout({
         lineHeight: 1.6,
         color: '#333'
       }}>
-        <header style={{ 
-          backgroundColor: '#007bff', 
-          color: 'white', 
-          padding: '1rem 0',
-          textAlign: 'center'
-        }}>
-          <nav style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
-            <a href="/" style={{ 
-              color: 'white', 
-              textDecoration: 'none', 
-              fontSize: '1.5rem', 
-              fontWeight: 'bold' 
-            }}>
-              HEIC zu JPG Konverter
-            </a>
-          </nav>
-        </header>
+        <SimpleNavigation />
         
         <main style={{ minHeight: 'calc(100vh - 140px)' }}>
           {children}

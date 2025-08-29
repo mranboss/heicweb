@@ -191,6 +191,49 @@ export default function NotFound() {
           "HEIC zu JPG", "PNG konvertieren" oder "iPhone Bilder umwandeln".
         </p>
       </div>
+
+      {/* Sitemap Link */}
+      <div style={{
+        marginTop: '2rem',
+        padding: '1.5rem',
+        backgroundColor: '#e8f4fd',
+        borderRadius: '8px',
+        border: '1px solid #007bff',
+        textAlign: 'center'
+      }}>
+        <h4 style={{
+          fontSize: '1.1rem',
+          fontWeight: 'bold',
+          marginBottom: '1rem',
+          color: '#007bff'
+        }}>
+          🗺️ Alle Seiten anzeigen
+        </h4>
+        <p style={{
+          marginBottom: '1rem',
+          fontSize: '0.95rem',
+          color: '#333'
+        }}>
+          Hier finden Sie eine vollständige Übersicht aller verfügbaren Seiten:
+        </p>
+        <a 
+          href="/api/sitemap"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-block',
+            padding: '0.75rem 1.5rem',
+            backgroundColor: '#007bff',
+            color: 'white',
+            textDecoration: 'none',
+            borderRadius: '6px',
+            fontWeight: 'bold',
+            fontSize: '1rem'
+          }}
+        >
+          📋 Sitemap anzeigen
+        </a>
+      </div>
     </div>
   );
 } 

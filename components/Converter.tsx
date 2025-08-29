@@ -323,20 +323,60 @@ export function Converter() {
 
       {/* Progress Bar */}
       {isConverting && (
-        <div style={{ marginBottom: '1rem' }}>
+        <div style={{ 
+          marginBottom: '1.5rem',
+          padding: '1rem',
+          backgroundColor: '#e8f4fd',
+          borderRadius: '8px',
+          border: '1px solid #007bff'
+        }}>
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            marginBottom: '0.5rem'
+          }}>
+            <span style={{ 
+              fontWeight: 'bold', 
+              color: '#007bff',
+              fontSize: '1.1rem'
+            }}>
+              {files && files.length > 1 
+                ? `Konvertiere ${files.length} Dateien...` 
+                : 'Konvertiere Datei...'
+              }
+            </span>
+            <span style={{ 
+              fontWeight: 'bold', 
+              color: '#007bff',
+              fontSize: '1.1rem'
+            }}>
+              {Math.round(progress)}%
+            </span>
+          </div>
           <div style={{ 
             width: '100%', 
-            height: '8px', 
-            backgroundColor: '#e9ecef', 
-            borderRadius: '4px', 
-            overflow: 'hidden' 
+            height: '12px', 
+            backgroundColor: '#ffffff', 
+            borderRadius: '6px', 
+            overflow: 'hidden',
+            border: '1px solid #dee2e6'
           }}>
             <div style={{ 
               width: `${progress}%`, 
               height: '100%', 
-              backgroundColor: '#007bff', 
-              transition: 'width 0.3s ease' 
+              background: 'linear-gradient(90deg, #007bff, #0056b3)', 
+              transition: 'width 0.3s ease',
+              borderRadius: '6px'
             }} />
+          </div>
+          <div style={{ 
+            textAlign: 'center', 
+            marginTop: '0.5rem',
+            fontSize: '0.9rem',
+            color: '#6c757d'
+          }}>
+            🔄 Alle Dateien werden lokal in Ihrem Browser verarbeitet
           </div>
         </div>
       )}
