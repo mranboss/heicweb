@@ -77,6 +77,19 @@ export default function RootLayout({
             gtag('set', 'url_passthrough', false);
           `
         }} />
+        
+        {/* Google Analytics 4 - Initialize with your GA4 ID */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            // Configure GA4 with consent mode
+            gtag('config', 'G-P17M7G7SWZ', {
+              'anonymize_ip': true,
+              'allow_google_signals': false,
+              'allow_ad_personalization_signals': false,
+              'page_title': 'HEIC zu JPG Konverter'
+            });
+          `
+        }} />
       </head>
       <body style={{ 
         margin: 0, 
@@ -89,6 +102,15 @@ export default function RootLayout({
         paddingRight: 'env(safe-area-inset-right, 0px)',
         paddingBottom: 'env(safe-area-inset-bottom, 0px)'
       }}>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe 
+            src="https://www.googletagmanager.com/ns.html?id=G-P17M7G7SWZ"
+            height="0" 
+            width="0" 
+            style={{display:'none',visibility:'hidden'}}
+          />
+        </noscript>
         <SimpleNavigation />
         
         <main style={{ 
