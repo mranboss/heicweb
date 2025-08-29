@@ -143,7 +143,7 @@ export function AdsSlot({
               width: '100%',
               height: height
             }}
-            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+            data-ad-client="ca-pub-9540832620603421"
             data-ad-slot={slotId}
             data-ad-format={format}
             data-full-width-responsive="true"
