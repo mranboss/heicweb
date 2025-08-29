@@ -1,4 +1,5 @@
 import { getPageMetadata } from '@/lib/seo';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JsonLd } from '@/components/JsonLd';
 
 export const metadata = getPageMetadata(
@@ -30,6 +31,8 @@ export default function ImpressumPage() {
       
       <div style={{ padding: '2rem 1rem' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <Breadcrumbs />
+          
           <h1 style={{ 
             fontSize: '2.5rem', 
             fontWeight: 'bold', 

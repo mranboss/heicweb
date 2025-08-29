@@ -1,6 +1,7 @@
 import { getPageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/JsonLd';
 import { AdsSlot } from '@/components/AdsSlot';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export const metadata = getPageMetadata(
   'iPhone: HEIC in JPG umwandeln – Schnell & ohne Upload',
@@ -105,6 +106,8 @@ export default function iPhoneGuidePage() {
       
       <div style={{ padding: '2rem 1rem' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <Breadcrumbs />
+          
           {/* Header */}
           <header style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h1 style={{ 

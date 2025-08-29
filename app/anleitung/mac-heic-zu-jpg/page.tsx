@@ -1,5 +1,6 @@
 import { getPageMetadata } from '@/lib/seo';
 import { AdsSlot } from '@/components/AdsSlot';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export const metadata = getPageMetadata(
   'Mac: HEIC in JPG umwandeln – Vorschau, Fotos & Browser',
@@ -11,6 +12,8 @@ export default function MacGuidePage() {
   return (
     <div style={{ padding: '2rem 1rem' }}>
       <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+        <Breadcrumbs />
+        
         <header style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <h1 style={{ 
             fontSize: '2.5rem', 

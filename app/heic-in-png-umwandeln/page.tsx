@@ -3,6 +3,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { AdsSlot } from '@/components/AdsSlot';
 import { Converter } from '@/components/Converter';
 import { FAQ } from '@/components/FAQ';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export const metadata = getPageMetadata(
   'HEIC in PNG umwandeln – Verlustarm & kostenlos (ohne Upload)',
@@ -81,6 +82,8 @@ export default function HEICToPNGPage() {
       
       <div style={{ padding: '2rem 1rem' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <Breadcrumbs />
+          
           {/* Hero Section */}
           <section style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h1 style={{ 

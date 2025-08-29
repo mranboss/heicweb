@@ -28,6 +28,7 @@ export function Converter() {
   useEffect(() => {
     const loadLibraries = async () => {
       try {
+        console.log('Loading conversion libraries...');
         const [heic2anyModule, JSZipModule, fileSaverModule] = await Promise.all([
           import('heic2any'),
           import('jszip'),
@@ -37,9 +38,17 @@ export function Converter() {
         heic2any = heic2anyModule.default;
         JSZip = JSZipModule.default;
         saveAs = fileSaverModule.saveAs;
+        
+        console.log('Libraries loaded successfully:', {
+          heic2any: !!heic2any,
+          JSZip: !!JSZip,
+          saveAs: !!saveAs
+        });
+        
         setIsLoaded(true);
       } catch (error) {
         console.error('Failed to load conversion libraries:', error);
+        alert('Fehler beim Laden der Konverter-Bibliotheken. Bitte laden Sie die Seite neu.');
       }
     };
     
@@ -118,25 +127,71 @@ export function Converter() {
     }
   };
 
-  const downloadSingle = (file: ConvertedFile) => {
-    saveAs(file.blob, file.name);
+  const downloadSingle = async (file: ConvertedFile) => {
+    try {
+      if (!saveAs) {
+        // Fallback to browser download if saveAs not loaded
+        const url = URL.createObjectURL(file.blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = file.name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      } else {
+        saveAs(file.blob, file.name);
+      }
+    } catch (error) {
+      console.error('Download failed:', error);
+      alert('Download fehlgeschlagen. Bitte versuchen Sie es erneut.');
+    }
   };
 
   const downloadAll = async () => {
     if (convertedFiles.length === 0) return;
 
-    if (convertedFiles.length === 1) {
-      downloadSingle(convertedFiles[0]);
-      return;
+    try {
+      if (convertedFiles.length === 1) {
+        await downloadSingle(convertedFiles[0]);
+        return;
+      }
+
+      if (!JSZip || !saveAs) {
+        // Fallback: download files individually if ZIP library not loaded
+        alert('ZIP wird erstellt... Dateien werden einzeln heruntergeladen.');
+        for (const file of convertedFiles) {
+          await downloadSingle(file);
+          // Small delay between downloads
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        return;
+      }
+
+      const zip = new JSZip();
+      convertedFiles.forEach((file) => {
+        zip.file(file.name, file.blob);
+      });
+
+      const zipBlob = await zip.generateAsync({ type: 'blob' });
+      
+      if (!saveAs) {
+        // Fallback browser download
+        const url = URL.createObjectURL(zipBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'converted-images.zip';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      } else {
+        saveAs(zipBlob, 'converted-images.zip');
+      }
+    } catch (error) {
+      console.error('Download failed:', error);
+      alert('Download fehlgeschlagen. Bitte versuchen Sie es erneut.');
     }
-
-    const zip = new JSZip();
-    convertedFiles.forEach((file) => {
-      zip.file(file.name, file.blob);
-    });
-
-    const zipBlob = await zip.generateAsync({ type: 'blob' });
-    saveAs(zipBlob, `converted-images.zip`);
   };
 
   const formatFileSize = (bytes: number): string => {
@@ -149,6 +204,20 @@ export function Converter() {
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem' }}>
+      {/* Loading Status */}
+      {!isLoaded && (
+        <div style={{ 
+          padding: '1rem',
+          backgroundColor: '#fff3cd',
+          border: '1px solid #ffc107',
+          borderRadius: '4px',
+          marginBottom: '1rem',
+          textAlign: 'center'
+        }}>
+          ⏳ Konverter wird geladen... Bitte warten Sie einen Moment.
+        </div>
+      )}
+
       {/* File Upload Area */}
       <div
         onDrop={handleDrop}
@@ -279,18 +348,24 @@ export function Converter() {
           <div style={{ marginBottom: '1rem' }}>
             <button
               onClick={downloadAll}
+              disabled={!isLoaded}
               style={{
                 padding: '0.75rem 1.5rem',
-                backgroundColor: '#28a745',
+                backgroundColor: isLoaded ? '#28a745' : '#6c757d',
                 color: 'white',
                 border: 'none',
                 borderRadius: '4px',
                 fontWeight: 'bold',
-                cursor: 'pointer',
+                cursor: isLoaded ? 'pointer' : 'not-allowed',
                 marginBottom: '1rem'
               }}
             >
-              {convertedFiles.length === 1 ? 'Datei herunterladen' : 'Alle als ZIP herunterladen'}
+              {!isLoaded 
+                ? 'Lade Bibliotheken...' 
+                : convertedFiles.length === 1 
+                  ? 'Datei herunterladen' 
+                  : 'Alle als ZIP herunterladen'
+              }
             </button>
           </div>
           
@@ -310,18 +385,23 @@ export function Converter() {
                   </div>
                 </div>
                 <button
-                  onClick={() => downloadSingle(file)}
+                  onClick={() => {
+                    downloadSingle(file).catch(error => {
+                      console.error('Download error:', error);
+                    });
+                  }}
+                  disabled={!isLoaded}
                   style={{
                     padding: '0.5rem 1rem',
-                    backgroundColor: '#007bff',
+                    backgroundColor: isLoaded ? '#007bff' : '#6c757d',
                     color: 'white',
                     border: 'none',
                     borderRadius: '4px',
-                    cursor: 'pointer',
+                    cursor: isLoaded ? 'pointer' : 'not-allowed',
                     fontSize: '0.9rem'
                   }}
                 >
-                  ⬇ Download
+                  {isLoaded ? '⬇ Download' : '⏳'}
                 </button>
               </div>
             ))}
