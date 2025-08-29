@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Favicon Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        .container { background: #f5f5f5; padding: 20px; border-radius: 8px; }
+        .icon { text-align: center; margin: 20px 0; }
+        .btn { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin: 10px; }
+        .btn:hover { background: #0056b3; }
+        .instructions { background: #e7f3ff; padding: 15px; border-radius: 4px; margin: 20px 0; }
+        .warning { background: #fff3cd; padding: 15px; border-radius: 4px; margin: 20px 0; border-left: 4px solid #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 HEIC Konverter Favicon Generator</h1>
+        
+        <div class="icon">
+            <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="30" fill="#007bff" stroke="#0056b3" stroke-width="2"/>
+                <rect x="10" y="22" width="16" height="12" rx="2" fill="white" opacity="0.9"/>
+                <rect x="12" y="24" width="12" height="8" rx="1" fill="#007bff"/>
+                <circle cx="14" cy="26" r="1" fill="white"/>
+                <rect x="16" y="29" width="6" height="1" fill="white" opacity="0.7"/>
+                <path d="M28 31 L34 32 L28 33 Z" fill="white"/>
+                <rect x="26" y="31.5" width="6" height="1" fill="white"/>
+                <rect x="38" y="22" width="16" height="12" rx="2" fill="white"/>
+                <rect x="40" y="24" width="12" height="8" rx="1" fill="#28a745"/>
+                <circle cx="42" cy="26" r="1" fill="white"/>
+                <rect x="44" y="29" width="6" height="1" fill="white" opacity="0.8"/>
+                <text x="18" y="42" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="white" text-anchor="middle">HEIC</text>
+                <text x="46" y="42" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="white" text-anchor="middle">JPG</text>
+            </svg>
+        </div>
+
+        <div class="instructions">
+            <h3>📋 生成步骤：</h3>
+            <ol>
+                <li>点击"下载SVG"按钮下载图标源文件</li>
+                <li>访问 <a href="https://favicon.io/favicon-converter/" target="_blank">favicon.io</a></li>
+                <li>上传下载的SVG文件</li>
+                <li>选择尺寸：16x16, 32x32, 48x48</li>
+                <li>下载生成的favicon.ico文件</li>
+            </ol>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="btn" onclick="downloadSVG()">📥 下载SVG图标</button>
+            <a href="https://favicon.io/favicon-converter/" target="_blank" class="btn">🔗 在线转换</a>
+        </div>
+
+        <div class="warning">
+            <h4>⚠️ 重要：文件放置位置</h4>
+            <p><strong>生成的favicon.ico必须放在：</strong></p>
+            <code>public/favicon.ico</code>
+            <p>这是Next.js项目的标准位置，浏览器会自动查找这个路径。</p>
+        </div>
+
+        <div class="instructions">
+            <h3>📁 完整文件结构：</h3>
+            <pre style="background: white; padding: 10px; border-radius: 4px;">
+public/
+├── favicon.ico          ← 主要favicon文件
+├── favicon-16x16.png   ← 16x16 PNG版本
+├── favicon-32x32.png   ← 32x32 PNG版本
+├── apple-touch-icon.png ← 180x180 Apple设备图标
+└── site.webmanifest    ← PWA配置文件</pre>
+        </div>
+
+        <div class="warning">
+            <h4>🔄 部署后操作：</h4>
+            <ol>
+                <li>将favicon.ico放到public/目录</li>
+                <li>重新部署到Vercel</li>
+                <li>清除浏览器缓存</li>
+                <li>刷新页面查看效果</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function downloadSVG() {
+            const svg = document.querySelector('svg');
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const blob = new Blob([svgData], {type: 'image/svg+xml'});
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'heic-converter-icon.svg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert('SVG图标已下载！现在请使用在线工具转换为ICO格式。');
+        }
+    </script>
+</body>
+</html> 

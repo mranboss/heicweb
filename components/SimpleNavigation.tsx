@@ -1,39 +1,56 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function SimpleNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <nav style={{
       backgroundColor: 'white',
       borderBottom: '1px solid #dee2e6',
       position: 'sticky',
-      top: 0,
+      top: 'env(safe-area-inset-top, 0px)',
       zIndex: 1000,
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+      paddingTop: 'env(safe-area-inset-top, 0px)'
     }}>
       <div style={{
         maxWidth: '1200px',
         margin: '0 auto',
-        padding: '0 1rem'
+        padding: '0 1rem',
+        paddingLeft: 'max(1rem, env(safe-area-inset-left))',
+        paddingRight: 'max(1rem, env(safe-area-inset-right))'
       }}>
         {/* Desktop Navigation */}
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          height: '60px'
+          height: '60px',
+          minHeight: '60px'
         }}>
           {/* Logo */}
           <a 
             href="/" 
             style={{
-              fontSize: '1.5rem',
+              fontSize: isMobile ? '1.3rem' : '1.5rem',
               fontWeight: 'bold',
               color: '#007bff',
-              textDecoration: 'none'
+              textDecoration: 'none',
+              flexShrink: 0
             }}
           >
             🔄 HEIC Konverter
@@ -43,7 +60,7 @@ export function SimpleNavigation() {
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '2rem'
+            gap: isMobile ? '1rem' : '2rem'
           }}>
             <div style={{ display: 'none' }}>
               {/* Will be shown via CSS media query */}
@@ -53,12 +70,16 @@ export function SimpleNavigation() {
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '1.5rem',
+              gap: isMobile ? '0.75rem' : '1.5rem',
               flexWrap: 'wrap'
             }}>
-              <a href="/faq" style={navLinkStyle}>FAQ</a>
-              <a href="/was-ist-heic" style={navLinkStyle}>Was ist HEIC?</a>
-              <a href="/anleitung/iphone-heic-zu-jpg" style={navLinkStyle}>📱 iPhone</a>
+              {!isMobile && (
+                <>
+                  <a href="/faq" style={navLinkStyle}>FAQ</a>
+                  <a href="/was-ist-heic" style={navLinkStyle}>Was ist HEIC?</a>
+                  <a href="/anleitung/iphone-heic-zu-jpg" style={navLinkStyle}>📱 iPhone</a>
+                </>
+              )}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 style={{
@@ -66,9 +87,10 @@ export function SimpleNavigation() {
                   color: 'white',
                   border: 'none',
                   borderRadius: '4px',
-                  padding: '0.5rem 1rem',
+                  padding: isMobile ? '0.4rem 0.8rem' : '0.5rem 1rem',
                   cursor: 'pointer',
-                  fontSize: '0.9rem'
+                  fontSize: isMobile ? '0.8rem' : '0.9rem',
+                  whiteSpace: 'nowrap'
                 }}
               >
                 {isMenuOpen ? 'Weniger ▲' : 'Mehr ▼'}
@@ -84,11 +106,13 @@ export function SimpleNavigation() {
             borderRadius: '8px',
             padding: '1.5rem',
             marginBottom: '1rem',
-            border: '1px solid #dee2e6'
+            border: '1px solid #dee2e6',
+            marginLeft: 'max(-1rem, -env(safe-area-inset-left))',
+            marginRight: 'max(-1rem, -env(safe-area-inset-right))'
           }}>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
               gap: '1.5rem'
             }}>
               {/* Formate */}
@@ -133,9 +157,9 @@ export function SimpleNavigation() {
                   ℹ️ Informationen
                 </h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <a href="/faq" style={menuLinkStyle}>FAQ</a>
                   <a href="/was-ist-heic" style={menuLinkStyle}>Was ist HEIC?</a>
                   <a href="/heic-vs-jpg" style={menuLinkStyle}>HEIC vs JPG</a>
-                  <a href="/faq" style={menuLinkStyle}>FAQ</a>
                 </div>
               </div>
 

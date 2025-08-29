@@ -90,7 +90,10 @@ export function CookieBanner() {
       zIndex: 9999,
       padding: '1.5rem',
       maxHeight: '80vh',
-      overflowY: 'auto'
+      overflowY: 'auto',
+      paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom, 1.5rem))',
+      paddingLeft: 'max(1.5rem, env(safe-area-inset-left, 1.5rem))',
+      paddingRight: 'max(1.5rem, env(safe-area-inset-right, 1.5rem))'
     }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {!showDetails ? (

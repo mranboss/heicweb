@@ -46,6 +46,7 @@ export default function RootLayout({
   return (
     <html lang="de">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
         <JsonLd json={organizationJsonLd} />
         <JsonLd json={websiteJsonLd} />
         <link rel="icon" href="/favicon.ico" />
@@ -82,11 +83,20 @@ export default function RootLayout({
         padding: 0, 
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
         lineHeight: 1.6,
-        color: '#333'
+        color: '#333',
+        paddingTop: 'env(safe-area-inset-top, 0px)',
+        paddingLeft: 'env(safe-area-inset-left, 0px)',
+        paddingRight: 'env(safe-area-inset-right, 0px)',
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)'
       }}>
         <SimpleNavigation />
         
-        <main style={{ minHeight: 'calc(100vh - 140px)' }}>
+        <main style={{ 
+          minHeight: 'calc(100vh - 140px)',
+          paddingTop: 'env(safe-area-inset-top, 0px)',
+          paddingLeft: 'env(safe-area-inset-left, 0px)',
+          paddingRight: 'env(safe-area-inset-right, 0px)'
+        }}>
           {children}
         </main>
         
