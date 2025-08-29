@@ -7,7 +7,7 @@ declare global {
 }
 
 // AdSense configuration - replace with your actual publisher ID
-export const ADSENSE_CLIENT_ID = 'pub-XXXXXXXXXXXXXXXX';
+export const ADSENSE_CLIENT_ID = 'pub-9540832620603421';
 
 export function initializeAdSense() {
   if (typeof window !== 'undefined' && !window.adsbygoogle) {
@@ -15,7 +15,7 @@ export function initializeAdSense() {
     
     // Create AdSense script with proper consent mode
     const script = document.createElement('script');
-    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${ADSENSE_CLIENT_ID}`;
+    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${9540832620603421}`;
     script.async = true;
     script.crossOrigin = 'anonymous';
     
@@ -29,10 +29,10 @@ export function initializeAdSense() {
 export function initializeGoogleAnalytics() {
   if (typeof window !== 'undefined') {
     // Only initialize if GA4_ID is configured
-    const GA4_ID = 'G-XXXXXXXXXX'; // Replace with your GA4 Measurement ID
+    const GA4_ID = 'G-P17M7G7SWZ'; // Replace with your GA4 Measurement ID
     
     const script = document.createElement('script');
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${G-P17M7G7SWZ}`;
     script.async = true;
     document.head.appendChild(script);
     
