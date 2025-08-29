@@ -15,7 +15,7 @@ export function initializeAdSense() {
     
     // Create AdSense script with proper consent mode
     const script = document.createElement('script');
-    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${9540832620603421}`;
+    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${ADSENSE_CLIENT_ID}`;
     script.async = true;
     script.crossOrigin = 'anonymous';
     
@@ -32,7 +32,7 @@ export function initializeGoogleAnalytics() {
     const GA4_ID = 'G-P17M7G7SWZ'; // Replace with your GA4 Measurement ID
     
     const script = document.createElement('script');
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${G-P17M7G7SWZ}`;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`;
     script.async = true;
     document.head.appendChild(script);
     
