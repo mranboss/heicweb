@@ -369,7 +369,7 @@ export default function HomePage() {
           {/* Related Links */}
           <section style={{ marginBottom: '3rem' }}>
             <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', textAlign: 'center' }}>
-              Hilfe & Anleitungen
+              Empfohlene Inhalte
             </h2>
             <div style={{ 
               display: 'grid', 
@@ -391,8 +391,8 @@ export default function HomePage() {
                   display: 'block'
                 }}
               >
-                <strong>iPhone HEIC zu JPG</strong><br />
-                <small style={{ color: '#6c757d' }}>Anleitung für iOS</small>
+                <strong>iPhone: HEIC in JPG umwandeln</strong><br />
+                <small style={{ color: '#6c757d' }}>Schritt-für-Schritt Anleitung</small>
               </a>
               <a 
                 href="/anleitung/windows-heic-zu-jpg" 
@@ -407,8 +407,8 @@ export default function HomePage() {
                   display: 'block'
                 }}
               >
-                <strong>Windows HEIC zu JPG</strong><br />
-                <small style={{ color: '#6c757d' }}>Anleitung für Windows</small>
+                <strong>Windows: HEIC zu JPG konvertieren</strong><br />
+                <small style={{ color: '#6c757d' }}>Tipps & Methoden</small>
               </a>
               <a 
                 href="/anleitung/mac-heic-zu-jpg" 
@@ -423,8 +423,8 @@ export default function HomePage() {
                   display: 'block'
                 }}
               >
-                <strong>Mac HEIC zu JPG</strong><br />
-                <small style={{ color: '#6c757d' }}>Anleitung für macOS</small>
+                <strong>Mac: HEIC in JPG umwandeln</strong><br />
+                <small style={{ color: '#6c757d' }}>Vorschau, Fotos & Browser</small>
               </a>
               <a 
                 href="/was-ist-heic" 
@@ -442,10 +442,42 @@ export default function HomePage() {
                 <strong>Was ist HEIC?</strong><br />
                 <small style={{ color: '#6c757d' }}>Format erklärt</small>
               </a>
+              <a 
+                href="/heic-vs-jpg" 
+                style={{ 
+                  padding: '1rem',
+                  backgroundColor: '#f8f9fa',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  color: '#333',
+                  border: '1px solid #dee2e6',
+                  textAlign: 'center',
+                  display: 'block'
+                }}
+              >
+                <strong>HEIC vs JPG</strong><br />
+                <small style={{ color: '#6c757d' }}>Vergleich & Einsatz</small>
+              </a>
+              <a 
+                href="/faq" 
+                style={{ 
+                  padding: '1rem',
+                  backgroundColor: '#f8f9fa',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  color: '#333',
+                  border: '1px solid #dee2e6',
+                  textAlign: 'center',
+                  display: 'block'
+                }}
+              >
+                <strong>FAQ</strong><br />
+                <small style={{ color: '#6c757d' }}>Häufige Fragen</small>
+              </a>
             </div>
           </section>
         </div>
       </div>
     </>
   );
-} 
+}

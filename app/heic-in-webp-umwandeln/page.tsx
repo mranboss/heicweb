@@ -390,8 +390,31 @@ export default function HEICToWEBPPage() {
               </a>
             </div>
           </section>
+          <section style={{ marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', textAlign: 'center' }}>
+              Empfohlene Inhalte
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+              <a href="/anleitung/iphone-heic-zu-jpg" style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '8px', textDecoration: 'none', color: '#333', border: '1px solid #dee2e6', textAlign: 'center', display: 'block' }}>
+                <strong>iPhone: HEIC in JPG</strong><br />
+                <small style={{ color: '#6c757d' }}>Schritt-für-Schritt</small>
+              </a>
+              <a href="/anleitung/windows-heic-zu-jpg" style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '8px', textDecoration: 'none', color: '#333', border: '1px solid #dee2e6', textAlign: 'center', display: 'block' }}>
+                <strong>Windows: HEIC in JPG</strong><br />
+                <small style={{ color: '#6c757d' }}>Tipps & Methoden</small>
+              </a>
+              <a href="/anleitung/mac-heic-zu-jpg" style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '8px', textDecoration: 'none', color: '#333', border: '1px solid #dee2e6', textAlign: 'center', display: 'block' }}>
+                <strong>Mac: HEIC in JPG</strong><br />
+                <small style={{ color: '#6c757d' }}>Vorschau & Fotos</small>
+              </a>
+              <a href="/faq" style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '8px', textDecoration: 'none', color: '#333', border: '1px solid #dee2e6', textAlign: 'center', display: 'block' }}>
+                <strong>FAQ</strong><br />
+                <small style={{ color: '#6c757d' }}>Häufige Fragen</small>
+              </a>
+            </div>
+          </section>
         </div>
       </div>
     </>
   );
-} 
+}

@@ -26,30 +26,6 @@ export function initializeAdSense() {
   }
 }
 
-export function initializeGoogleAnalytics() {
-  if (typeof window !== 'undefined') {
-    // Only initialize if GA4_ID is configured
-    const GA4_ID = 'G-P17M7G7SWZ'; // Replace with your GA4 Measurement ID
-    
-    const script = document.createElement('script');
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`;
-    script.async = true;
-    document.head.appendChild(script);
-    
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function() {
-      window.dataLayer.push(arguments);
-    };
-    
-    window.gtag('config', GA4_ID, {
-      // IP anonymization for GDPR compliance
-      'anonymize_ip': true,
-      // Disable advertising features by default
-      'allow_google_signals': false,
-      'allow_ad_personalization_signals': false
-    });
-  }
-}
 
 export function updateConsentState(preferences: {
   analytics: boolean;
@@ -63,9 +39,8 @@ export function updateConsentState(preferences: {
       'ad_personalization': preferences.marketing ? 'granted' : 'denied'
     });
     
-    // Initialize services based on consent
     if (preferences.analytics) {
-      initializeGoogleAnalytics();
+      window.gtag('event', 'page_view');
     }
     
     if (preferences.marketing) {
@@ -73,14 +48,3 @@ export function updateConsentState(preferences: {
     }
   }
 }
-
-// German-specific AdSense configuration
-export function configureGermanAdSense() {
-  if (typeof window !== 'undefined' && window.adsbygoogle) {
-    // Configure for German market with standard AdSense settings
-    window.adsbygoogle.push({
-      google_ad_client: ADSENSE_CLIENT_ID,
-      enable_page_level_ads: true
-    });
-  }
-} 

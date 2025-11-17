@@ -24,6 +24,9 @@ export function getPageMetadata(
     metadataBase: new URL(siteConfig.url),
     alternates: {
       canonical: url,
+      languages: {
+        'de': url,
+      },
     },
     openGraph: {
       type: 'website',
@@ -31,6 +34,7 @@ export function getPageMetadata(
       title,
       description,
       siteName: siteConfig.name,
+      locale: 'de_DE',
       images: [
         {
           url: siteConfig.ogImage,
@@ -48,4 +52,4 @@ export function getPageMetadata(
     },
     robots: noIndex ? 'noindex,nofollow' : 'index,follow',
   };
-} 
+}

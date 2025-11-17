@@ -53,13 +53,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon.svg" />
         <link rel="manifest" href="/site.webmanifest" />
         
-        {/* Google Consent Mode v2 - Initialize BEFORE any Google tags */}
         <script dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            
-            // Set default consent state (required before any Google tags)
             gtag('consent', 'default', {
               'ad_storage': 'denied',
               'ad_user_data': 'denied', 
@@ -69,17 +66,15 @@ export default function RootLayout({
               'personalization_storage': 'denied',
               'security_storage': 'granted'
             });
-            
-            // Set ads data redaction
             gtag('set', 'ads_data_redaction', true);
             gtag('set', 'url_passthrough', false);
+            gtag('js', new Date());
           `
         }} />
         
-        {/* Google Analytics 4 - Initialize with your GA4 ID */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-P17M7G7SWZ"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
-            // Configure GA4 with consent mode
             gtag('config', 'G-P17M7G7SWZ', {
               'anonymize_ip': true,
               'allow_google_signals': false,
@@ -100,15 +95,7 @@ export default function RootLayout({
         paddingRight: 'env(safe-area-inset-right, 0px)',
         paddingBottom: 'env(safe-area-inset-bottom, 0px)'
       }}>
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe 
-            src="https://www.googletagmanager.com/ns.html?id=G-P17M7G7SWZ"
-            height="0" 
-            width="0" 
-            style={{display:'none',visibility:'hidden'}}
-          />
-        </noscript>
+
         <SimpleNavigation />
         
         <main style={{ 
@@ -161,4 +148,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-} 
+}

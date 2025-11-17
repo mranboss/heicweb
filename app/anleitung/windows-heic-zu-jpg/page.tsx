@@ -1,6 +1,7 @@
 import { getPageMetadata } from '@/lib/seo';
 import { AdsSlot } from '@/components/AdsSlot';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { JsonLd } from '@/components/JsonLd';
 
 export const metadata = getPageMetadata(
   'Windows: HEIC in JPG umwandeln – Online & lokal',
@@ -8,10 +9,20 @@ export const metadata = getPageMetadata(
   '/anleitung/windows-heic-zu-jpg'
 );
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "HEIC in JPG umwandeln", "item": "https://heic-zu-jpg.de" },
+    { "@type": "ListItem", "position": 2, "name": "Windows Anleitung", "item": "https://heic-zu-jpg.de/anleitung/windows-heic-zu-jpg" }
+  ]
+};
+
 export default function WindowsGuidePage() {
   return (
     <div style={{ padding: '2rem 1rem' }}>
       <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+        <JsonLd json={breadcrumbJsonLd} />
         <Breadcrumbs />
         
         <header style={{ textAlign: 'center', marginBottom: '3rem' }}>
@@ -252,4 +263,4 @@ export default function WindowsGuidePage() {
       </div>
     </div>
   );
-} 
+}
